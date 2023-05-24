@@ -1,10 +1,19 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: web
+  labels:
+    name: web
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-deployment
+  namespace: web
   labels:
     app: webapp
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: webapp
@@ -15,6 +24,6 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: nginx:1.24.0-alpine
+          image: nginx:1.23.0-alpine
           ports:
             - containerPort: 80
