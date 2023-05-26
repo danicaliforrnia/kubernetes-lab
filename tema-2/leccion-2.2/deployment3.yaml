@@ -3,13 +3,14 @@ kind: Deployment
 metadata:
   name: php-apache
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      run: php-apache
+      app: php-apache
   template:
     metadata:
       labels:
-        run: php-apache
+        app: php-apache
     spec:
       containers:
       - name: php-apache
@@ -32,7 +33,7 @@ spec:
   ports:
   - port: 80
   selector:
-    run: php-apache
+    app: php-apache
 
 # Test: kubectl run -it load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 # Para mas información kubcetl run --help
