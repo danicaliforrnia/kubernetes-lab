@@ -1,0 +1,5 @@
+apiVersion: apps/v1
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: sample-apps
