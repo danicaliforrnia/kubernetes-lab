@@ -1,7 +1,7 @@
 variable "appId" {
-  description = "Azure Kubernetes Service Cluster service principal"
+  description = "Service Principal para el clúster"
 }
 
 variable "password" {
-  description = "Azure Kubernetes Service Cluster password"
+  description = "Contraseña del Service Principal del clúster"
 }

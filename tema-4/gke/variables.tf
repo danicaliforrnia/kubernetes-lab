@@ -1,23 +1,23 @@
 variable "project_id" {
-  description = "project id"
+  description = "El ID del proyecto donde estará el clúster"
 }
 
 variable "region" {
-  description = "region"
+  description = "La región donde estará el clúster"
 }
 
 
 variable "gke_username" {
   default     = ""
-  description = "gke username"
+  description = "El nombre de usuario de GKE"
 }
 
 variable "gke_password" {
   default     = ""
-  description = "gke password"
+  description = "La ontraseña del usuario de GKE"
 }
 
 variable "gke_num_nodes" {
   default     = 2
-  description = "number of gke nodes"
+  description = "El número de nodos"
 }
