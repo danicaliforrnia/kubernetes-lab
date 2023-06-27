@@ -9,7 +9,7 @@ on:
 
 defaults:
  run:
-  working-directory: ./tema-5/node-app
+  working-directory: 'tema-5/node-app'
 
 jobs:
   test:

@@ -6,10 +6,6 @@ on:
     paths:
     - 'tema-5/node-app/**'
 
-defaults:
- run:
-  working-directory: ./tema-5/node-app
-
 jobs:
   build:
     runs-on: ubuntu-latest
