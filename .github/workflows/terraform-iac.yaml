@@ -30,7 +30,7 @@ jobs:
           
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var="project_id=${{ vars.PROJECT_ID }}"
         continue-on-error: true
 
       - name: Terraform Plan Status
