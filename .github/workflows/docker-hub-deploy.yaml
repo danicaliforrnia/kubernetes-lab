@@ -52,7 +52,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
-        context: tema-5/npde-app
+        context: tema-5/node-app
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
     
