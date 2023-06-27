@@ -74,3 +74,10 @@ jobs:
         push: true
         tags: ${{ steps.metadata.outputs.tags }}
         labels: ${{ steps.metadata.outputs.labels }}
+
+    - name: Run the image in a container
+      uses: addnab/docker-run-action@v3
+      with:
+        image: ${{ steps.metadata.outputs.tags }}
+        run: |
+          echo "Testing the Node.js app"
