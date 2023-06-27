@@ -1,4 +1,4 @@
-name: GCP Registry Deplyoment
+name: GCP Registry Deployment
 
 on:
   push:

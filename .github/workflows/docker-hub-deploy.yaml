@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.Js CI 2 - Docker Hub
 
 on:
   push:
