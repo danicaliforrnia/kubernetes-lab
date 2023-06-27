@@ -1,6 +1,7 @@
 name: GCP Registry Deployment
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
     paths:
