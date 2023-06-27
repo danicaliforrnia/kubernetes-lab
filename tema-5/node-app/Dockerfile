@@ -1,15 +1,14 @@
 FROM node:20-alpine3.17
 
-RUN mkdir -p /opt/app
+RUN mkdir -p /usr/app
 
-WORKDIR /usropt/app
+WORKDIR /usr/app
 
-
-COPY package.json /opt/app/
+COPY . .
 
 RUN npm install
 
-COPY server.js /usr/src/app
+COPY server.js /usr/app
 
 EXPOSE 8080
 
