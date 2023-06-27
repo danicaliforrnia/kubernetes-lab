@@ -1,4 +1,4 @@
-FROM mhart/alpine-node
+FROM node:20-alpine3.17
 
 RUN mkdir -p /opt/app
 
