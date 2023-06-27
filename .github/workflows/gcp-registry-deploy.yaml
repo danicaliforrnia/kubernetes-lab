@@ -3,6 +3,9 @@ name: GCP Registry Deployment
 on:
   push:
     branches: [ master ]
+    paths:
+    - './tema-5/node-app'
+
 
 defaults:
  run:
