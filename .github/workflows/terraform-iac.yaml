@@ -16,7 +16,7 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SECRET }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CE_CREDENTIALS }}
     
     steps:
       - name: Checkout
