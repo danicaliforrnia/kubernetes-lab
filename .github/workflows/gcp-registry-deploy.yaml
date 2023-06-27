@@ -70,7 +70,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
-        context: tema-5/node-app/.
+        context: tema-5/node-app
         push: true
         tags: ${{ steps.metadata.outputs.tags }}
         labels: ${{ steps.metadata.outputs.labels }}
