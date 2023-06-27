@@ -12,15 +12,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      node-version: 20.x
+      NODE_VERSION: 20.x
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Node.js ${{ env.node-version }}
+    - name: Setup Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ env.node-version }}
+        node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
     - name: Install dependencies
@@ -46,7 +46,7 @@ jobs:
       id: metadata
       uses: docker/metadata-actions@v3
       with:
-        images: ${{ vars.image-name }}
+        images: ${{ vars.IMAGE_NAME }}
         tags: |
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
@@ -62,7 +62,7 @@ jobs:
     - uses: 'docker/login-action@v1'
       name: 'Docker login'
       with:
-        registry: '${{ var.location }}-docker.pkg.dev'
+        registry: '${{ vars.GCP_LOCATION }}-docker.pkg.dev'
         username: 'oauth2accesstoken'
         password: '${{ steps.auth.outputs.access_token }}'
 
