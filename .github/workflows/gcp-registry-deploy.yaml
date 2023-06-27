@@ -46,7 +46,7 @@ jobs:
 
     - name: Set Docker metadada
       id: metadata
-      uses: docker/metadata-actions@v4
+      uses: docker/metadata-action@v4
       with:
         images: ${{ vars.IMAGE_NAME }}
         tags: |
