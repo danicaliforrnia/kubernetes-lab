@@ -1,6 +1,7 @@
 name: Terraform IaC
 
 on:
+  workflow_dispatch:
   push:
     paths:
     - 'tema-4/gke-2/**'
