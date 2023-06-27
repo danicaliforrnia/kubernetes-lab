@@ -4,21 +4,23 @@ on:
   push:
     branches: [ master ]
 
-jobs:
+defaults:
+ run:
+  working-directory: ./tema-5/node-app
 
+jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
+    env:
+      node-version: 20.x
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js ${{ env.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.node-version }}
         cache: 'npm'
 
     - name: Install dependencies
@@ -47,18 +49,17 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push
-    uses: docker/build-push-action@v2
-    with:
-      context: ./
-      file: ./Dockerfile
-      push: true
-      tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
     
-  - name: Run the image in a container
-    uses: addnab/docker-run-action@v3
-    with:
-      image: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo:latest
-      run: |
-        echo "Testing the nodejs app"
-        curl http:localhost:8080
-        echo ${{ steps.docker_build.outputs.digest }}
+    - name: Run the image in a container
+      uses: addnab/docker-run-action@v3
+      with:
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo:latest
+        run: |
+          echo "Testing the nodejs app"
+          curl http:localhost:8080
+          echo ${{ steps.docker_build.outputs.digest }}
