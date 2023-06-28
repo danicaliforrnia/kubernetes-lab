@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     env:
-      CLUSTER: 'my-gke-cluster=dev'
+      CLUSTER: 'my-gke-cluster-2-dev'
       CLUSTER_ZONE: 'europe-west1'
     steps:
     - name: 'Authenticate to Google Cloud'
