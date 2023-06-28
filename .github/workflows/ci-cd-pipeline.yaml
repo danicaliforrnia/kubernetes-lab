@@ -58,7 +58,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [push]
     env:
       CLUSTER: 'my-gke-cluster-2-dev'
       CLUSTER_ZONE: 'europe-west1'
