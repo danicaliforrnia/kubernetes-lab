@@ -63,6 +63,9 @@ jobs:
       CLUSTER: 'my-gke-cluster-2-dev'
       CLUSTER_ZONE: 'europe-west1'
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: 'Authenticate to Google Cloud'
       id: 'auth'      
       uses: 'google-github-actions/auth@v0.6.0'
