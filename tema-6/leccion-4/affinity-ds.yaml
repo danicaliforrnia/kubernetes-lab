@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: hello-world-ds
+spec:
+  selector:
+    matchLabels:
+      name: hello-world-app
+  template:
+    metadata:
+      labels:
+        name: hello-world-app
+    spec:
+      containers:
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:1.0
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - high-cpu
+                  - medium-cpu
+        
