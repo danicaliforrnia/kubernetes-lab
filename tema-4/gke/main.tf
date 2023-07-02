@@ -15,13 +15,12 @@ resource "google_compute_subnetwork" "subnet" {
   name          = "${var.project_id}-subnet"
   region        = var.region
   network       = google_compute_network.vpc.name
-  ip_cidr_range = "10.10.0.0/24"
+  ip_cidr_range = "10.10.1.0/24"
 }
 
 resource "google_container_cluster" "primary" {
   name     = "my-gke-${random_pet.prefix.id}"
   location = var.region
-  
   
   remove_default_node_pool = true
   initial_node_count       = 1
