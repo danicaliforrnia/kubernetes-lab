@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: testing
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "curso-k8s.ddns.net"
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: hello-servicej
+              port:
+                number: 80
