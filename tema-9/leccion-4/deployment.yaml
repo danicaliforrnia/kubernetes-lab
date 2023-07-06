@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: namespace1
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: my-sa-1
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+          - mountPath: /var/run/secrets/tokens
+            name: my-projected-token
+      volumes:
+      - name: my-projected-token
+        projected:
+          sources:
+            - serviceAccountToken:
+                path: token
+                expirationSeconds: 600
