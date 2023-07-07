@@ -24,14 +24,15 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 80
-      livenessProbe:
-        tcpSocket:
-          port: 80
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      redinessProbe:
-        httpGet:
-          path: /
-          port: 80
-        initialDelaySeconds: 10
-        periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
