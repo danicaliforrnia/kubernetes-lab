@@ -1,4 +1,4 @@
-# /bin/bash
+#!/bin/bash
 
 echo '------- test from frontend -------'
 kubectl exec -it web -n frontend -- curl api.backend --connect-timeout 5
