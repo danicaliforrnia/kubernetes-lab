@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: webapp
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: webapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 3
+  template:
+    metadata: 
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+      livenessProbe:
+        tcpSocket:
+          port: 81
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      redinessProbe:
+        httpGet:
+          path: /
+          port: 81
+        initialDelaySeconds: 10
+        periodSeconds: 5

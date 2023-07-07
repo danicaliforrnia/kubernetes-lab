@@ -5,10 +5,15 @@ metadata:
   labels:
     app: webapp
 spec:
-  replicas: 5
+  replicas: 6
   selector:
     matchLabels:
       app: webapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 3
   template:
     metadata: 
       labels:
