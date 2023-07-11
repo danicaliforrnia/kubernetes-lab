@@ -6,11 +6,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: fluent-bit-logging
+      app: fluent-bit
   template:
     metadata:
       labels:
-        app: fluent-bit-logging
+        app: fluent-bit
     spec:
       containers:
       - name: fluent-bit

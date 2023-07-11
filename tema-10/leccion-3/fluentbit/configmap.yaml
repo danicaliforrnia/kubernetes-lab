@@ -4,7 +4,7 @@ metadata:
   name: fluent-bit-config
   namespace: kube-logging
   labels:
-    k8s-app: fluent-bit
+    app: fluent-bit
 data:
   fluent-bit.conf: |
     [SERVICE]
@@ -12,9 +12,12 @@ data:
         Log_Level     info
         Daemon        off
         Parsers_File  parsers.conf
+        HTTP_Server   On
+        HTTP_Listen   0.0.0.0
+        HTTP_Port     2020
 
     @INCLUDE input-kubernetes.conf
-    @INCLUDE output-elasticsearch.conf    
+    @INCLUDE output-fluentd.conf
 
   input-kubernetes.conf: |
     [INPUT]
@@ -25,15 +28,15 @@ data:
         DB                /var/log/flb_kube.db
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
-        Refresh_Interval  10    
+        Refresh_Interval  10
 
   output-fluentd.conf: |
     [OUTPUT]
-        Name          forward
-        Match         *
-        Host          ${FLUENTD_HOST}
-        Port          ${FLUENTD_PORT}
-        Retry_Limit   False
+        Name            forward
+        Match           *
+        Host            ${FLUENTD_HOST}
+        Port            ${FLUENTD_PORT}
+        Retry_Limit     False
 
   parsers.conf: |
     [PARSER]
@@ -41,4 +44,4 @@ data:
         Format      json
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L
-        Time_Keep   On 
+        Time_Keep   On
