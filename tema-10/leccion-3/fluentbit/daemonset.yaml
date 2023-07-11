@@ -20,7 +20,7 @@ spec:
           - containerPort: 2020
         env:
         - name: FLUENTD_HOST
-          value: "127.0.0.1"
+          value: "host.minikube.internal"
         - name: FLUENTD_PORT
           value: "24224"
         volumeMounts:
