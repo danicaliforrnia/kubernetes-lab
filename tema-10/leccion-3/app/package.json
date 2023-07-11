@@ -1,0 +1,14 @@
+{
+  "name": "hello-json-logging",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "restify": "1.3",
+    "bunyan": "0.6"
+  }
+}

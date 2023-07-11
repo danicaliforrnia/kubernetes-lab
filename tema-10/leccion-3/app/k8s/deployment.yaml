@@ -1,0 +1,39 @@
+piVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluent-demo
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fluent-demo
+  template:
+    metadata:
+      labels:
+        app: fluent-demo
+    spec:
+      containers:
+      - name: fluent-demo
+        image: danielstefanelli/hello-json-logging-demo:1.0.0
+        ports:
+          - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /hello
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /hello
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10

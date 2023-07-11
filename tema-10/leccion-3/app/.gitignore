@@ -1,0 +1,6 @@
+/tmp
+/*.log
+
+# Ignore node_modules binary bits.
+build
+.lock-wscript
