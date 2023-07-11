@@ -15,6 +15,7 @@ data:
 
     @INCLUDE input-kubernetes.conf
     @INCLUDE output-elasticsearch.conf    
+
   input-kubernetes.conf: |
     [INPUT]
         Name              tail
