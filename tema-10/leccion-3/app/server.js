@@ -32,7 +32,6 @@ server.pre(function (req, res, next) {
   return next();
 });
 
-
 server.get({path: '/hello', name: 'SayHello'}, function(req, res, next) {
   var caller = req.params.name || 'caller';
   req.log.debug('caller is "%s"', caller);
