@@ -1,0 +1,14 @@
+replicaCount: 4
+
+image:
+  repository: nginx
+  tag: 1.16.0
+
+service:
+  name: nginx-service
+  type: NodePort
+  port: 80
+  targetPort: 80
+
+env:
+  name: dev
