@@ -67,11 +67,8 @@ jobs:
         tags: ${{ steps.metadata.outputs.tags }}
         labels: ${{ steps.metadata.outputs.labels }}
 
-    - name: debug
-      run: echo ${{ steps.metadata.outputs.version }}
-
     - id: version
-      run: echo ${{ steps.metadata.outputs.version }} >> "$GITHUB_OUTPUT"
+      run: echo "version=${{ steps.metadata.outputs.version }}"" >> "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
