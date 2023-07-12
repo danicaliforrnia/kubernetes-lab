@@ -1,0 +1,12 @@
+replicaCount: 2
+containerPort: 8080
+
+image:
+  repository: danielstefanelli/node-app
+  tag: latest
+
+service:
+  name: node-app-service
+  type: NodePort
+  port: 8080
+  targetPort: 8080
