@@ -49,12 +49,21 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Set Docker metadada
+      id: metadata
+      uses: docker/metadata-action@v4
+      with:
+        images: '${{ secrets.DOCKERHUB_USERNAME }}/node-app'
+        tags: |
+          type=raw,value={{sha}},enable=${{ github.ref_type != 'tag' }}
+
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
         context: tema-5/node-app
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:$GITHUB_SHA
+        tags: ${{ steps.metadata.outputs.tags }}
+        labels: ${{ steps.metadata.outputs.labels }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,8 +72,6 @@ jobs:
       run:
         working-directory: 'tema-5/leccion-10/node-chart'
     env:
-      CLUSTER: ${{ secrets.CLUSTER }}
-      CLUSTER_ZONE: ${{ secrets.CLUSTER_ZONE }}
       RELEASE: node-app-demo
     steps:
     - name: Checkout repository
@@ -80,8 +87,8 @@ jobs:
     - name: 'Connect to GKE'
       uses: google-github-actions/get-gke-credentials@v0
       with:
-        cluster_name: ${{ env.CLUSTER }}
-        location: ${{ env.CLUSTER_ZONE }}
+        cluster_name: ${{ secrets.CLUSTER }}
+        location: ${{ secrets.CLUSTER_ZONE }}
 
     - name: Install Helm
       run: |
