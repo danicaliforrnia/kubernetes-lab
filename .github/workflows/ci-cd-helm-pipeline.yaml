@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     outputs:
-      version: ${{ steps.tags.outputs.version }}
+      version: ${{ steps.version.outputs.version }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -98,6 +98,9 @@ jobs:
     - name: Install Helm
       run: |
         curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+    - name: debug
+      run: echo ${{ needs.push.outputs.version }}
 
     - name: Deploy
       run: |
