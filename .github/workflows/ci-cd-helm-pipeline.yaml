@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     outputs:
-      tags: ${{ steps.tags.outputs.tags }}
+      version: ${{ steps.tags.outputs.version }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -67,8 +67,11 @@ jobs:
         tags: ${{ steps.metadata.outputs.tags }}
         labels: ${{ steps.metadata.outputs.labels }}
 
-    - id: tags
-      run: echo ${{ steps.metadata.outputs.tags }} >> "$GITHUB_OUTPUT"
+    - name: debug
+      run: echo ${{ steps.metadata.outputs.version }}
+
+    - id: version
+      run: echo ${{ steps.metadata.outputs.version }} >> "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
@@ -102,7 +105,7 @@ jobs:
     - name: Deploy
       run: |
         helm upgrade $RELEASE . \
-          --set image.tag=${{ needs.push.outputs.tags }} \
+          --set image.tag=${{ needs.push.outputs.version }} \
           --wait --timeout 2m
 
     - name: 'Check rollout'
