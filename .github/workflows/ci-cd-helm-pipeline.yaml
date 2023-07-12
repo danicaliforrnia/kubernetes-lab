@@ -36,6 +36,8 @@ jobs:
   push:
     runs-on: ubuntu-latest
     needs: [test]
+    outputs:
+      tags: ${{ steps.metadata.outputs.tags }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -97,7 +99,7 @@ jobs:
     - name: Deploy
       run: |
         helm upgrade $RELEASE . \
-          --set image.tag=$GITHUB_SHA \
+          --set image.tag=${{needs.push.outputs.tags}} \
           --wait --debug
 
     - name: 'Check rollout'
