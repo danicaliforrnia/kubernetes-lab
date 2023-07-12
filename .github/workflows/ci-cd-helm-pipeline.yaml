@@ -88,7 +88,7 @@ jobs:
         location: ${{ secrets.CLUSTER_ZONE }}
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deliverybot/helm@master'
       with:
         helm: 'helm3'
         release: $RELEASE
