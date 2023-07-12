@@ -68,6 +68,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [push]
+    defaults:
+      run:
+        working-directory: 'tema-5/leccion-10/node-chart'
     env:
       RELEASE: node-app-demo
     steps:
@@ -87,21 +90,15 @@ jobs:
         cluster_name: ${{ secrets.CLUSTER }}
         location: ${{ secrets.CLUSTER_ZONE }}
 
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@master'
-      with:
-        helm: 'helm3'
-        release: $RELEASE
-        namespace: 'default'
-        chart: 'tema-5/leccion-10/node-chart'
-        version: $GITHUB_SHA
-        values: |
-          image:
-            tag: $GITHUB_SHA
-        value-files: >-
-          [
-            "values.yaml"
-          ]
+    - name: Install Helm
+      run: |
+        curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+    - name: Deploy
+      run: |
+        helm upgrade $RELEASE . \
+          --set image.tag=$GITHUB_SHA \
+          --wait
 
     - name: 'Check rollout'
       run: kubectl rollout status -f deployment/$RELEASE-deployment
