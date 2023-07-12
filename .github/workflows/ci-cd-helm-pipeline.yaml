@@ -106,7 +106,7 @@ jobs:
           --wait --timeout 2m --debug
 
     - name: 'Check rollout'
-      run: kubectl rollout status -f deployment/$RELEASE-deployment
+      run: kubectl rollout status deployment/$RELEASE-deployment
 
     - name: 'Check Service'
       run: kubectl get services -o wide
