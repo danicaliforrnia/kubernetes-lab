@@ -6,14 +6,14 @@ spec:
   replicas:  {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: node-app-demo
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: node-app-demo
+        app: {{ .Values.appName }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
+      - name: {{ .Values.appName }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
           - containerPort: {{ .Values.containerPort }}

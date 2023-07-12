@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-service
 spec:
   selector:
-    app: nginx
+    app: {{ .Values.appName }}
   type: {{ .Values.service.type }}
   ports:
     - protocol: {{ .Values.service.protocol | default "TCP" }}
