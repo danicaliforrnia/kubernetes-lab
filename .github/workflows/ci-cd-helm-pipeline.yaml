@@ -98,7 +98,7 @@ jobs:
       run: |
         helm upgrade $RELEASE . \
           --set image.tag=$GITHUB_SHA \
-          --wait
+          --wait --debug
 
     - name: 'Check rollout'
       run: kubectl rollout status -f deployment/$RELEASE-deployment
