@@ -8,4 +8,4 @@ spec:
       image: debian
       command: ["/bin/sh"]
       terminationMessagePolicy: FallbackToLogsOnError
-      args: ["-c", "sleep 10 && echo Sleep finished"]
+      args: ["-c", "sleep 10 && echo Sleep finished && exit 1"]
