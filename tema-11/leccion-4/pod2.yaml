@@ -8,4 +8,4 @@ spec:
       image: debian
       command: ["/bin/sh"]
       terminationMessagePath: "/tmp/termination-log"
-      args: ["-c", "sleep 10"]
+      args: ["-c", "sleep 10 && echo Sleep Finished > /tmp/termination-log"]
