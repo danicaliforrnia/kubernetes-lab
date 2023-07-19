@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: termination
+spec:
+  containers:
+    - name: termination-container
+      image: debian
+      command: ["/bin/sh"]
+      terminationMessagePath: "/tmp/termination-log"
+      args: ["-c", "sleep 10"]
