@@ -13,7 +13,7 @@ metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func TestRealCluster(t *testing.T) {
-	deploymentFeature := features.New("appsv1/deployment").
+	deploymentFeature := features.New("appsv1/deployment").WithLabel("type", "sleep").
 		Setup(func(ctx context.Context, t *testing.T, cfg *envconf.Config) context.Context {
 			deployment := newDeployment(cfg.Namespace(), "test-deployment", 1)
 			

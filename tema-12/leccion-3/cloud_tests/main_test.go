@@ -16,7 +16,7 @@ import (
 var testenv env.Environment
 
 func TestMain(m *testing.M) {
-	testenv = env.New()
+	testenv, _ = env.NewFromFlags()
 	namespace := envconf.RandomName("sample-ns", 16)
 
 	if os.Getenv("REAL_CLUSTER") == "true" {
@@ -43,7 +43,6 @@ func TestMain(m *testing.M) {
 			envfuncs.DeleteNamespace(namespace),
 			envfuncs.DestroyKindCluster(kindClusterName),
 		)
-	}
 	}
 
 	os.Exit(testenv.Run(m))
