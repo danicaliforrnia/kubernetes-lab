@@ -19,7 +19,7 @@ import (
 func TestRealClusterWithWait(t *testing.T) {
 	deploymentFeature := features.New("appsv1/deployment").WithLabel("type", "wait").
 		Setup(func(ctx context.Context, t *testing.T, cfg *envconf.Config) context.Context {
-			deployment := newDeployment(cfg.Namespace(), "test-deployment", 4)
+			deployment := newWaitDeployment(cfg.Namespace(), "test-deployment", 4)
 			client, err := cfg.NewClient()
 
 			if err != nil {
