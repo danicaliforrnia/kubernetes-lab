@@ -1,0 +1,24 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: applabel
+spec:
+  crd:
+    spec:
+      names:
+        kind: AppLabel
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package applabel
+ 
+        labels := input.review.object.metadata.labels
+ 
+        has_app {
+          labels.app
+        }
+ 
+        violation[{"msg": msg}] {
+          not has_app
+          msg := "Debe tener la etiqueta app"
+        }
