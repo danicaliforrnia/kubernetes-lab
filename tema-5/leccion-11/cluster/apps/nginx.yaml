@@ -24,3 +24,4 @@ spec:
         name: kubernetes-lab
   interval: 30s
   targetNamespace: demo
+  createTargetNamespace: true
