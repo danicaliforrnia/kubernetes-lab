@@ -22,6 +22,7 @@ spec:
       sourceRef:
         kind: GitRepository
         name: kubernetes-lab
+  install:
+    createNamespace: true
   interval: 30s
   targetNamespace: demo
-  createTargetNamespace: true
