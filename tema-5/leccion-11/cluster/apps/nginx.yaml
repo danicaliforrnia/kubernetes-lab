@@ -27,3 +27,6 @@ spec:
     createNamespace: true
   interval: 30s
   targetNamespace: demo
+  upgrade:
+    remediation:
+      strategy: rollback
