@@ -14,7 +14,7 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 
   workload_identity_config {
-    identity_namespace = "${var.project_id}.svc.id.goog"
+    workload_pool = "${var.project_id}.svc.id.goog"
   }
 }
 
@@ -31,7 +31,6 @@ resource "google_project_iam_member" "storage_bucket" {
 }
 
 resource "google_service_account_iam_binding" "sa_binding" {
-  project            = var.project_id
   service_account_id = google_service_account.cluster_service_account.email
   role               = "roles/iam.workloadIdentityUser"
   members = [
