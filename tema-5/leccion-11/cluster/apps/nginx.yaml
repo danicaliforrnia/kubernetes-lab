@@ -27,3 +27,13 @@ spec:
     createNamespace: true
   interval: 30s
   targetNamespace: demo
+  upgrade:
+    remediation:
+      retries: 2
+  rollback:
+    timeout: 2m
+    disableWait: false
+    disableHooks: false
+    recreate: false
+    force: false
+    cleanupOnFail: false
