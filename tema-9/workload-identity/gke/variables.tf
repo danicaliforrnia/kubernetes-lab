@@ -14,7 +14,7 @@ variable "gke_username" {
 
 variable "gke_password" {
   default     = ""
-  description = "La ontraseña del usuario de GKE"
+  description = "La contraseña del usuario de GKE"
 }
 
 variable "gke_num_nodes" {
