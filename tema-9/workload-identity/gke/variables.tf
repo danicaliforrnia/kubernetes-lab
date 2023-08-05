@@ -7,6 +7,6 @@ variable "region" {
 }
 
 variable "gke_num_nodes" {
-  default     = 2
+  default     = 1
   description = "El número de nodos"
 }
