@@ -29,4 +29,11 @@ spec:
   targetNamespace: demo
   upgrade:
     remediation:
-      strategy: rollback
+      retries: 2
+  rollback:
+    timeout: 2m
+    disableWait: false
+    disableHooks: false
+    recreate: false
+    force: true
+    cleanupOnFail: true
