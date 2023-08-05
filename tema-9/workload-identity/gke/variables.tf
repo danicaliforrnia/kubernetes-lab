@@ -6,17 +6,6 @@ variable "region" {
   description = "La región donde estará el clúster"
 }
 
-
-variable "gke_username" {
-  default     = ""
-  description = "El nombre de usuario de GKE"
-}
-
-variable "gke_password" {
-  default     = ""
-  description = "La contraseña del usuario de GKE"
-}
-
 variable "gke_num_nodes" {
   default     = 2
   description = "El número de nodos"
