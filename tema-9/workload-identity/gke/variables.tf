@@ -1,11 +1,17 @@
 variable "project_id" {
-  description = "El ID del proyecto donde estará el clúster"
+  description = "El ID del proyecto"
 }
 
 variable "region" {
-  default = "europe-west2-a"
-  description = "La región donde estará el clúster"
+  default = "europe-west2"
+  description = "La región"
 }
+
+variable "location" {
+  default = "europe-west2-a"
+  description = "La zona del clúster"
+}
+
 
 variable "gke_num_nodes" {
   default     = 1
