@@ -9,4 +9,4 @@ metadata:
   name: app-sa
   namespace: web
   annotations:
-    iam.gke.io/gcp-service-account: ""
+    iam.gke.io/gcp-service-account: "app-sa@cursos-imagina.iam.gserviceaccount.com"
