@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test
+  name: workload-identity-test
   namespace: web
 spec:
-  serviceAccountName: app-sa
   containers:
-  - name: count
-    image: busybox:1.28
-    command:
-      - sleep
-      - "3600"  
-  restartPolicy: Always
+  - name: workload-identity-test
+    image: google/cloud-sdk:slim
+    command: ["sleep", "infinity"]
+  serviceAccountName: app-sa
+  nodeSelector:
+    iam.gke.io/gke-metadata-server-enabled: "true"
