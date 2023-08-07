@@ -7,7 +7,7 @@ openssl genrsa -out certs/demouser.key 2048
 openssl req -new \
 	-key certs/demouser.key \
 	-out certs/demouser.csr \
-	-sbj "/CN=demouser/0=group1"
+	-subj "/CN=demouser/0=group1"
 
 # Crear Certificado
 openssl x509 \

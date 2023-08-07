@@ -2,11 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-ingress
-  namespace: demo
   annotations:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.allow-http: "true"
 spec:
+  tls:
+  - hosts:
+    - curso-k8s.ddns.net
+    secretName: hello-app-tls
   defaultBackend:
     service:
       name: hello-service
