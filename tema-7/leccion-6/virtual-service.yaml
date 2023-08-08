@@ -10,4 +10,4 @@ spec:
   http:
   - route:
     - destination:
-        host: nodejs.testing.svc.cluster.local
+        host: hello-service.demo.svc.cluster.local
