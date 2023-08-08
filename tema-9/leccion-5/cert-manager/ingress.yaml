@@ -6,9 +6,6 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.allow-http: "true"
 spec:
-  tls:
-  - hosts:
-    - curso-k8s.ddns.net
   defaultBackend:
     service:
       name: hello-service
