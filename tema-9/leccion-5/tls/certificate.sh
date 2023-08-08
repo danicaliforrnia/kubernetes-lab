@@ -3,7 +3,7 @@
 # Crear llave privada
 openssl genrsa -out certs/helloapp.key 2048
 
-# Crear CSR: Client Signing Request
+# Crear CSR: Certificate Signing Request
 openssl req -new \
 	-key certs/helloapp.key \
 	-out certs/helloapp.csr \
