@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+---
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedNamespace
+metadata:
+  name: web
+  namespace: web
+spec:
+  placement:
+    clusterSelector: {}
+---
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedDeployment
+metadata:
+  name: nginx
+  namespace: web
+spec:
+  placement:
+    clusters:
+    - name: member-cluster-1
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx
+            ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedService
+metadata:
+  name: nginx
+  namespace: web
+spec:
+  placement:
+    clusters:
+    - name: member-cluster-1
+  template:
+    spec:
+      selector:
+        app: nginx
+      type: NodePort
+      ports:
+      - port: 80
+        targetPort: 8080
+        nodePort: 30031
