@@ -45,5 +45,5 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gsutil iam ch serviceAccount:$SERVICE_ACCOUNT_EMAIL:objectAdmin gs://${BUCKET}
 
 # Crear y exportar key de la cuenta de servicio
-gcloud iam service-accounts keys create credentials-velero.json \
+gcloud iam service-accounts keys create credentials-velero \
     --iam-account $SERVICE_ACCOUNT_EMAIL
