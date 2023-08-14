@@ -17,11 +17,17 @@ ROLE_PERMISSIONS=(
     compute.disks.get
     compute.disks.create
     compute.disks.createSnapshot
+    compute.projects.get
     compute.snapshots.get
     compute.snapshots.create
     compute.snapshots.useReadOnly
     compute.snapshots.delete
     compute.zones.get
+    storage.objects.create
+    storage.objects.delete
+    storage.objects.get
+    storage.objects.list
+    iam.serviceAccounts.signBlob
 )
 
 # Crear un rol velero.server con los permisos definidos
