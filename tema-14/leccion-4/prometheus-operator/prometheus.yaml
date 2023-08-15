@@ -11,3 +11,12 @@ spec:
     requests:
       memory: 400Mi
   enableAdminAPI: false
+  alerting:
+    alertmanagers:
+    - namespace: default
+      name: alertmanager-example
+      port: web
+  ruleSelector:
+    matchLabels:
+      role: alert-rules
+  ruleNamespaceSelector: {}
