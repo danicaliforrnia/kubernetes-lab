@@ -4,3 +4,6 @@ metadata:
   name: example
 spec:
   replicas: 3
+  alertmanagerConfigSelector:
+    matchLabels:
+      alertmanagerConfig: example
