@@ -3,7 +3,7 @@ kind: IstioOperator
 spec:
   values:
     global:
-      meshID: mesh-1
+      meshID: mesh1
       multiCluster:
-        clusterName: cluster-2
-      network: network-1
+        clusterName: cluster2
+      network: network1
