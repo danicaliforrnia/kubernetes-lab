@@ -1,16 +1,21 @@
 provider "google-beta" {
-  project     = var.project_id
-  region      = var.region
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_container_cluster" "gke_a" {
-  provider           = google-beta
-  name               = "${var.cluster_name}-${var.env_name}-a"
-  location           = var.zone
+  provider = google-beta
+  name     = "${var.cluster_name}-${var.env_name}-a"
+  location = var.zone
   initial_node_count = 1
-
+  
   workload_identity_config {
     workload_pool = "${var.project_id}.svc.id.goog"
+  }
+
+  node_config {
+    machine_type = "e2-standard-4"
+    disk_size_gb = 50
   }
 }
 
@@ -22,6 +27,11 @@ resource "google_container_cluster" "gke_b" {
 
   workload_identity_config {
     workload_pool = "${var.project_id}.svc.id.goog"
+  }
+
+  node_config {
+    machine_type = "e2-standard-4"
+    disk_size_gb = 50
   }
 }
 
