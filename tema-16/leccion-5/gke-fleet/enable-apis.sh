@@ -10,4 +10,5 @@ gcloud services enable \
    gkeconnect.googleapis.com \
    gkehub.googleapis.com \
    cloudresourcemanager.googleapis.com \
-   iam.googleapis.com
+   iam.googleapis.com \
+   anthos.googleapis.com
