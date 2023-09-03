@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gke-ingress
+  namespace: testing
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "lb-ip"
+spec:
+  rules:
+    - host: curso-k8s.ddns.net
+      http:
+        paths:
+          - pathType: Prefix
+            path: /hello
+            backend:
+              service:
+                name: hello-service
+                port:
+                  number: 80
