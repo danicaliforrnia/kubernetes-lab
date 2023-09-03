@@ -23,25 +23,25 @@ echo "------------------------------------"
 
 echo "Creating a workload identity pool for GitHub..."
 # Pool de Workload Identity para GitHub
-gcloud iam workload-identity-pools create "github-workload-identity-pool" \
+gcloud iam workload-identity-pools create "github-wi-pool" \
   --project="${PROJECT_ID}" \
   --location="global" \
-  --display-name="GitHub workload identity pool"
+  --display-name="GitHub pool"
 echo "------------------------------------"
 
 # Obtener el nombre del Workload Identity Pool
 WORKLOAD_IDENTITY_POOL_NAME=$(gcloud iam workload-identity-pools list \
-  --filter="displayName:GitHub workload identity pool" \
+  --filter="displayName:GitHub pool" \
   --location="global" \
   --format 'value(name)')
 
 echo "Creating a workload identity provider for GitHub..."
 # Workload Identity Provider de GitHub
-gcloud iam workload-identity-pools providers create-oidc "github-workload-identity-provider" \
+gcloud iam workload-identity-pools providers create-oidc "github-wi-provider" \
   --project="${PROJECT_ID}" \
   --location="global" \
-  --workload-identity-pool="github-workload-identity-pool" \
-  --display-name="GitHub workload identity provider" \
+  --workload-identity-pool="github-wi-pool" \
+  --display-name="GitHub provider" \
   --attribute-mapping="google.subject=assertion.repository,attribute.actor=assertion.actor,attribute.aud=assertion.aud" \
   --issuer-uri="https://token.actions.githubusercontent.com"
 echo "------------------------------------"
